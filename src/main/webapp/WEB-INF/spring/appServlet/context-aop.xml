@@ -10,10 +10,11 @@
 	<bean id="log" class="com.example.myweb.common.LogAdvice"></bean>
 
 	<aop:config>
-		<aop:pointcut expression="execution(* com.example.myweb..*Impl.*(..))" id="allPointcut"/>
+		<aop:pointcut id="allPointcut" expression="execution(* com.example.myweb..*Impl.*(..))"/>
 		
 		<aop:aspect ref="log">
 			<aop:before method="printLog" pointcut-ref="allPointcut"/>
+			<aop:after method="printLog2" pointcut-ref="allPointcut"/>
 		</aop:aspect>
 	</aop:config>
 </beans>

@@ -25,6 +25,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> getList(BoardVO vo) {
+		System.out.println("getList() - BoardServiceImpl 실행");
 		//logAdvice.printLog();
 		return boardDao.getBoardList(vo);
 	}
