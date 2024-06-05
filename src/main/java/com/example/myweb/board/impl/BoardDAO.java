@@ -34,22 +34,19 @@ public class BoardDAO {
 	// 글등록
 	public void insertBoard(BoardVO vo) {
 		System.out.println("===> insertBoard() - BoardDAO 기능 처리");
-		
-		
+		jdbcTemplate.update(SQL_INSERT, vo.getTitle(), vo.getWriter(), vo.getContent());
 	}
 	
 	// 글수정
 	public void updateBoard(BoardVO vo) {
 		System.out.println("===> updateBoard() - BoardDAO 기능 처리");
-		
+		jdbcTemplate.update(SQL_UPDATE, vo.getTitle(), vo.getContent(), vo.getSeq());
 	}
 	
 	// 글삭제
 	public void deleteBoard(BoardVO vo) {
 		System.out.println("===> deleteBoard() - BoardDAO 기능 처리");
-		
-		
-		
+		jdbcTemplate.update(SQL_DELETE, vo.getSeq());				
 	}
 	
 	class BoardMapper implements RowMapper<BoardVO> {
@@ -73,7 +70,7 @@ public class BoardDAO {
 		System.out.println("===> getBoard() - BoardDAO 기능 처리");
 		BoardMapper rowMapper = new BoardMapper();
 		Object[] objArr = new Object[]{vo.getSeq()};
-		BoardVO board = jdbcTemplate.queryForObject(SQL_LIST, objArr, rowMapper);;
+		BoardVO board = jdbcTemplate.queryForObject(SQL_GET, objArr, rowMapper);
 		return board;
 	}
 	
